@@ -1,6 +1,6 @@
 // Gallery.jsx
 import React, { useState } from "react";
-import "./Gallery.css";
+import "./gallery.css";
 
 export default function Gallery() {
   const items = [
