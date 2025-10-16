@@ -1,0 +1,167 @@
+/* Gallery.css - Fully Responsive */
+.gallery-root {
+  max-width: 980px;
+  margin: 24px auto;
+  padding: 0 12px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #222;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* responsive: 2 columns on medium screens, 3 on wide screens */
+@media (min-width: 480px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1200px) {
+  .grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Card styling */
+.card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(20,20,20,0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Before-After Slider */
+.ba-slider {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: #000;
+  touch-action: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+.ba-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.ba-img.before { position: absolute; left: 0; top: 0; }
+
+.after-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Handle */
+.handle {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.handle-line {
+  width: 2px;
+  height: 100%;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08) inset;
+}
+
+.handle-dot {
+  position: absolute;
+  bottom: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* Card Body */
+.card-body {
+  padding: 10px 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.desc {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.meta {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Hover effect */
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-4px);
+    transition: transform 160ms ease;
+  }
+}
+
+/* Responsive tweaks */
+@media(max-width: 480px) {
+  .gallery-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .ba-slider {
+    height: 140px;
+  }
+  .title {
+    font-size: 14px;
+  }
+  .desc {
+    font-size: 12px;
+  }
+  .meta {
+    font-size: 11px;
+  }
+  .handle-dot {
+    width: 20px;
+    height: 20px;
+    bottom: 6px;
+  }
+}
+
+@media(max-width: 768px) {
+  .ba-slider {
+    height: 160px;
+  }
+}
