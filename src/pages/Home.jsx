@@ -262,7 +262,7 @@ export default function Home() {
                 <div className="product-category">{p.category}</div>
                 <div className="product-name">{p.name}</div>
                 <div className="product-price">₹{p.price.toLocaleString('en-IN')}</div>
-                <Link to={`/products/${p._id}`} className="btn btn-small">View Item</Link>
+                <Link to={`/products`} className="btn btn-small">View Item</Link>
               </div>
             </div>
           ))}
