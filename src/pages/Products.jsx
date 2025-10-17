@@ -1,20 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ProductCard from '../components/ProductCard.jsx';
 
 export default function Products() {
-  // Manual product list with images in public/assets/images/products/
-  const [products] = useState([
-    { _id: 1, name: 'Wireless Mouse', category: 'Mobile Accessories', price: 499, image: './assets/images/phonecase.jpg' },
-    { _id: 2, name: 'USB-C Cable', category: 'Mobile Accessories', price: 299, image: './assets/images/batteries.jpg' },
-    { _id: 3, name: 'Bluetooth Speaker', category: 'Small Electronics', price: 1200, image: './assets/images/laptop.jpg' },
-    { _id: 4, name: 'Refurbished Phone', category: 'Refurbished', price: 5500, image: './assets/images/remote.jpg' },
-    { _id: 5, name: 'AA Batteries Pack', category: 'Batteries/Remotes', price: 350, image: './assets/images/speaker.jpg' },
-    { _id: 6, name: 'Wireless Earbuds', category: 'Small Electronics', price: 2500, image: './assets/images/tablet.jpg' },
-     { _id: 7, name: 'Wireless Mouse', category: 'Mobile Accessories', price: 499, image: './assets/images/phonecase.jpg' },
-    { _id: 8, name: 'USB-C Cable', category: 'Mobile Accessories', price: 299, image: './assets/images/Wired Gaming Headphones.jpg' },
-    { _id: 9, name: 'Bluetooth Speaker', category: 'Small Electronics', price: 1200, image: './assets/images/wire.jpg' },
-    { _id: 10, name: 'Refurbished Phone', category: 'Refurbished', price: 5500, image: './assets/images/watch.jpg' },
-    { _id: 11, name: 'AA Batteries Pack', category: 'Batteries/Remotes', price: 350, image: './assets/images/bulb.jpg' },
-    { _id: 12, name: 'Wireless Earbuds', category: 'Small Electronics', price: 2500, image: './assets/images/dth.jpg' },
+  // Manual product list with local images
+  const [products, setProducts] = useState([
+    { _id: 1, name: 'Wireless Mouse', category: 'Mobile Accessories', price: 499, image: '/assets/images/products/mouse.jpg' },
+    { _id: 2, name: 'USB-C Cable', category: 'Mobile Accessories', price: 299, image: '/assets/images/products/cable.jpg' },
+    { _id: 3, name: 'Bluetooth Speaker', category: 'Small Electronics', price: 1200, image: '/assets/images/products/speaker.jpg' },
+    { _id: 4, name: 'Refurbished Phone', category: 'Refurbished', price: 5500, image: '/assets/images/products/phone.jpg' },
+    { _id: 5, name: 'AA Batteries Pack', category: 'Batteries/Remotes', price: 350, image: '/assets/images/products/batteries.jpg' },
+    { _id: 6, name: 'Wireless Earbuds', category: 'Small Electronics', price: 2500, image: './assets/images/earbuds.jpg' },
   ]);
 
   const [q, setQ] = useState('');
@@ -25,32 +20,6 @@ export default function Products() {
     (cat === 'All' || p.category === cat) &&
     (q === '' || p.name.toLowerCase().includes(q.toLowerCase()))
   );
-
-  // Inline ProductCard component
-  const ProductCard = ({ product }) => {
-    const [qty, setQty] = useState(1);
-
-    const handleAdd = () => {
-      alert(`Added ${qty} "${product.name}" to cart!`);
-    };
-
-    return (
-      <div className="card">
-        <img src={product.image} alt={product.name} />
-        <h4>{product.name}</h4>
-        <p>₹ {product.price}</p>
-        <div className="card-actions">
-          <input
-            type="number"
-            min="1"
-            value={qty}
-            onChange={e => setQty(Number(e.target.value))}
-          />
-          <button onClick={handleAdd}>Add</button>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <>
@@ -101,6 +70,7 @@ export default function Products() {
           max-width: 1000px;
           align-items: center;
         }
+
         .filter-card .input {
           flex: 1;
           min-width: 180px;
@@ -109,6 +79,7 @@ export default function Products() {
           border: 1px solid #ccc;
           font-size: 1rem;
         }
+
         .filter-card select {
           padding: 0.5rem 0.75rem;
           border-radius: 6px;
@@ -123,9 +94,11 @@ export default function Products() {
           max-width: 1200px;
           margin: 0 auto;
         }
+
         .grid-3 {
           grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         }
+
         .card {
           background: #fff;
           border-radius: 12px;
@@ -134,10 +107,12 @@ export default function Products() {
           box-shadow: 0 6px 15px rgba(0,0,0,0.08);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .card:hover {
           transform: translateY(-4px);
           box-shadow: 0 12px 20px rgba(0,0,0,0.12);
         }
+
         .card img {
           width: 100%;
           height: 180px;
@@ -145,47 +120,25 @@ export default function Products() {
           border-radius: 12px 12px 0 0;
           margin-bottom: 0.5rem;
         }
+
         .card h4 {
           font-weight: 700;
           margin-bottom: 0.3rem;
           color: #182848;
         }
+
         .card p {
           color: #ff5722;
           font-weight: 700;
           margin-bottom: 0.5rem;
         }
-        .card-actions {
-          display: flex;
-          justify-content: center;
-          gap: 8px;
-          margin-top: 8px;
-        }
-        .card-actions input {
-          width: 60px;
-          padding: 0.3rem;
-          border-radius: 6px;
-          border: 1px solid #ccc;
-          text-align: center;
-        }
-        .card-actions button {
-          padding: 0.4rem 0.8rem;
-          border: none;
-          border-radius: 6px;
-          background: #4299e1;
-          color: #fff;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background 0.3s ease;
-        }
-        .card-actions button:hover {
-          background: #3182ce;
-        }
+
         .no-product {
           font-weight: 500;
           color: #555;
           padding: 2rem 0;
         }
+
         @media(max-width: 768px) {
           .filter-card { flex-direction: column; }
           .filter-card .input, .filter-card select { width: 100%; }
@@ -194,6 +147,7 @@ export default function Products() {
     </>
   );
 }
+
 
 
 
